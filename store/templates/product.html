@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Products</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <label for="title">Product Name:</label>
+        <input id="title" type="text" name="title"><br>
+
+        <label for="description">Description:</label>
+        <input id="description" type="text" name="description"><br>
+        
+        <label for="price">Price:</label>
+        <input id="price" type="number" name="price""><br>
+
+        <label for="stock">Stock:</label>
+        <input id="stock" type="number" name="stock"><br>
+
+        <label for="category">Category</label>
+
+        
+        <select id="category" name="category">
+            {% for item in category %}
+            <option value="{{ item.id }}">{{ item.name }}</option>
+            {% endfor %}
+        </select>
+    
+
+        <button type="submit">Add Product</button>
+    </form>
+    {% for product in products %}
+    <h2>{{ product.title }}</h2>
+    <p>{{ product.description }}</p>
+    <p>{{ product.price }}</p>
+    <p>{{ product.stock }}</p>
+    <p>{{ product.category }}</p>
+    {% endfor %}
+</body>
+</html>
