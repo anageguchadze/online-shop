@@ -13,7 +13,7 @@
         <input id="description" type="text" name="description"><br>
         
         <label for="price">Price:</label>
-        <input id="price" type="number" name="price""><br>
+        <input id="price" type="number" name="price"><br>
 
         <label for="stock">Stock:</label>
         <input id="stock" type="number" name="stock"><br>
@@ -31,11 +31,17 @@
         <button type="submit">Add Product</button>
     </form>
     {% for product in products %}
+    <a href="{% url 'remove_product' product.id %}"><button>Remove Product</button></a>
+    <form method="post" action="{% url 'select_product' product.id %}">
+        {% csrf_token %}
     <h2>{{ product.title }}</h2>
     <p>{{ product.description }}</p>
     <p>{{ product.price }}</p>
     <p>{{ product.stock }}</p>
     <p>{{ product.category }}</p>
+    <input type="number" name="quantity">
+    <button type="submit">Save</button>
+    </form>
     {% endfor %}
 </body>
 </html>

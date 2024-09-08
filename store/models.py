@@ -14,7 +14,7 @@ class Product(models.Model):
     stock = models.IntegerField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
-class Order(models.Model):
+class Orders(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     total_price = models.DecimalField(max_digits=5, decimal_places=2)
